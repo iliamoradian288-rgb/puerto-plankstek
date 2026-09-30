@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta oficial extraída de los logos de Plankstek
+     (ver docs/BRAND.md — fuente: PDFs en Downloads/plankstek/logo) */
+  --color-brand-red: #a01d28; /* fondo principal, rojo vino */
+  --color-brand-red-dark: #7c1420; /* rojo profundo: hover, footer, overlays */
+  --color-brand-red-deep: #5c0e16; /* rojo noche: hero oscuro, neón */
+  --color-brand-sand: #cbbc9e; /* beige arena: marco, STEK, secciones claras */
+  --color-brand-sand-light: #e4dccd; /* beige claro: fondos alt., tarjetas */
+  --color-brand-coal: #2a2929; /* negro carbón: PLANK, texto sobre claro */
+  --color-brand-ink: #171515; /* casi negro: body oscuro, header */
+  --color-brand-glow: #d7bf61; /* dorado neón: acentos, CTAs, contadores */
+  --color-brand-glow-soft: #f0e2ae; /* dorado pálido: highlights */
+  --color-brand-white: #ffffff;
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --background: var(--color-brand-sand-light);
+  --foreground: var(--color-brand-coal);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
