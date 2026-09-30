@@ -15,6 +15,7 @@ import {
   BadgePercent,
   Phone,
 } from "lucide-react";
+import SwedishFlag from "@/components/SwedishFlag";
 
 const NAV = [
   { label: "Eventos", href: "/eventos", icon: CalendarDays },
@@ -31,8 +32,9 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Franja superior: logo centrado sobre rojo marca */}
-      <div className="bg-brand-red border-b-4 border-brand-sand">
+      {/* Franja superior: logo centrado sobre rojo marca con ribete escandinavo */}
+      <div className="bg-brand-red border-b-4 border-brand-sand relative">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sweden-blue via-sweden-yellow to-sweden-blue opacity-80" />
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-1 px-4 py-4">
           <Link href="/" className="flex flex-col items-center gap-2">
             <Image
@@ -44,8 +46,15 @@ export default function Navbar() {
               className="h-16 w-auto sm:h-20"
             />
           </Link>
-          <p className="font-display text-[11px] font-medium uppercase tracking-[0.35em] text-brand-white/80">
-            Puerto · Restaurant & Events
+          <div className="flex items-center gap-2">
+            <SwedishFlag className="h-3 w-auto rounded-[2px] ring-1 ring-white/30" />
+            <p className="font-display text-[11px] font-medium uppercase tracking-[0.35em] text-brand-white/80">
+              Puerto · Cocina Escandinava & Brasa
+            </p>
+            <SwedishFlag className="h-3 w-auto rounded-[2px] ring-1 ring-white/30 scale-x-[-1]" />
+          </div>
+          <p className="text-[10px] uppercase tracking-[0.25em] text-sweden-yellow/70">
+            Puerto Deportivo Fuengirola · Málaga
           </p>
         </div>
       </div>
@@ -55,7 +64,6 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4">
           {/* Desktop */}
           <ul className="hidden items-stretch lg:flex">
-            {/* Menú con dropdown */}
             <li
               className="relative"
               onMouseEnter={() => setMenuOpen(true)}
@@ -114,7 +122,8 @@ export default function Navbar() {
                   <item.icon className="h-4 w-4 text-brand-glow" />
                   {item.label}
                   {item.badge && (
-                    <span className="rounded-full bg-brand-glow px-1.5 py-0.5 text-[10px] font-bold text-brand-ink">
+                    <span className="flex items-center gap-1 rounded-full bg-sweden-blue px-2 py-0.5 text-[10px] font-bold text-sweden-yellow ring-1 ring-sweden-yellow/50">
+                      <SwedishFlag className="h-2 w-auto" />
                       {item.badge}
                     </span>
                   )}
@@ -123,12 +132,13 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* CTA reservar desktop */}
+          {/* CTA Reserva — azul sueco con borde amarillo */}
           <Link
             href="/reserva-eventos"
-            className="font-display hidden rounded-full bg-brand-glow px-5 py-2 text-sm font-bold uppercase tracking-widest text-brand-ink transition-colors hover:bg-brand-glow-soft lg:block"
+            className="font-display hidden items-center gap-2 rounded-full bg-sweden-blue px-5 py-2 text-xs font-bold uppercase tracking-widest text-sweden-yellow ring-2 ring-sweden-yellow shadow-md transition-all hover:bg-sweden-blue/80 hover:scale-105 lg:flex"
           >
-            Reservar
+            <SwedishFlag className="h-2.5 w-auto" />
+            Reserva Eventos +20
           </Link>
 
           {/* Botón hamburguesa */}
@@ -146,7 +156,6 @@ export default function Navbar() {
         {mobileOpen && (
           <div className="border-t border-brand-white/10 lg:hidden">
             <div className="space-y-1 px-4 py-3">
-              {/* Menú expandible */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="font-display flex w-full items-center gap-2 rounded px-3 py-2.5 text-sm font-semibold uppercase tracking-widest hover:bg-brand-red"
@@ -187,7 +196,8 @@ export default function Navbar() {
                   <item.icon className="h-4 w-4 text-brand-glow" />
                   {item.label}
                   {item.badge && (
-                    <span className="ml-auto rounded-full bg-brand-glow px-1.5 py-0.5 text-[10px] font-bold text-brand-ink">
+                    <span className="ml-auto flex items-center gap-1 rounded-full bg-sweden-blue px-2 py-0.5 text-[10px] font-bold text-sweden-yellow">
+                      <SwedishFlag className="h-2 w-auto" />
                       {item.badge}
                     </span>
                   )}
@@ -196,8 +206,9 @@ export default function Navbar() {
               <Link
                 href="/reserva-eventos"
                 onClick={() => setMobileOpen(false)}
-                className="font-display mt-2 block rounded-full bg-brand-glow px-5 py-3 text-center text-sm font-bold uppercase tracking-widest text-brand-ink"
+                className="font-display mt-2 flex items-center justify-center gap-2 rounded-full bg-sweden-blue px-5 py-3 text-center text-sm font-bold uppercase tracking-widest text-sweden-yellow ring-1 ring-sweden-yellow/60"
               >
+                <SwedishFlag className="h-2.5 w-auto" />
                 Reservar evento +20
               </Link>
             </div>

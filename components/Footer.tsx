@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MapPin, Phone, Clock } from "lucide-react";
+import SwedishFlag from "@/components/SwedishFlag";
 
 export const InstagramIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -29,16 +30,24 @@ export const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-ink text-brand-white/70">
+    <footer className="bg-brand-ink text-brand-white/70 relative">
+      {/* Franja escandinava superior */}
+      <div className="h-1 flex">
+        <div className="flex-1 bg-sweden-blue" />
+        <div className="flex-1 bg-sweden-yellow" />
+      </div>
       <div className="mx-auto max-w-6xl px-4 py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
-            <p className="font-display text-2xl font-bold uppercase tracking-wider text-brand-white">
-              Puerto <span className="text-brand-glow">Plankstek</span>
-            </p>
+            <div className="flex items-center gap-2">
+              <SwedishFlag className="h-4 w-auto rounded-[2px] ring-1 ring-white/30" />
+              <p className="font-display text-2xl font-bold uppercase tracking-wider text-brand-white">
+                Puerto <span className="text-sweden-yellow">Plankstek</span>
+              </p>
+            </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed">
               Brasa, cocina persa y clásicos internacionales en Puerto
-              Deportivo de Benalmádena.
+              Deportivo Fuengirola.
             </p>
           </div>
           <div>
@@ -68,7 +77,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
-                Puerto Deportivo de Benalmádena, Local 62, 29630 Málaga
+                Puerto Deportivo Fuengirola, 29640 Fuengirola, Málaga
               </li>
               <li className="flex gap-2">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
@@ -76,7 +85,7 @@ export default function Footer() {
               </li>
               <li className="flex gap-2">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
-                Mar–Dom · 13:00 – 00:00
+                Lun–Dom · 17:00 – 01:00
               </li>
             </ul>
           </div>
@@ -89,8 +98,9 @@ export default function Footer() {
             </p>
             <Link
               href="/reserva-eventos"
-              className="font-display inline-block rounded-full bg-brand-red px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-brand-red-dark"
+              className="font-display inline-flex items-center gap-2 rounded-full bg-sweden-blue px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-sweden-yellow ring-1 ring-sweden-yellow/60 transition-all hover:bg-sweden-blue/80 hover:scale-105"
             >
+              <SwedishFlag className="h-2.5 w-auto" />
               Solicitar reserva
             </Link>
             <div className="mt-6 flex gap-3">
@@ -100,7 +110,7 @@ export default function Footer() {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-brand-white/40 hover:text-brand-white">
                 <FacebookIcon className="h-5 w-5" />
               </a>
-              <a href="https://wa.me/34624992209" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-brand-white/40 hover:text-brand-white">
+              <a href="https://wa.me/34619028260" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-brand-white/40 hover:text-brand-white">
                 <WhatsAppIcon className="h-5 w-5" />
               </a>
             </div>

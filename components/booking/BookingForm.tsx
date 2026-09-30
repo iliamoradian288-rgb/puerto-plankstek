@@ -11,6 +11,7 @@ import {
   Cake,
   Briefcase,
   PartyPopper,
+  MessageCircle,
 } from "lucide-react";
 
 const EVENT_TYPES = [
@@ -19,6 +20,15 @@ const EVENT_TYPES = [
   { value: "grupo", label: "Grupo +20", icon: Users },
   { value: "otro", label: "Otra celebración", icon: PartyPopper },
 ] as const;
+
+const EVENT_LABELS: Record<string, string> = {
+  cumpleanos: "Cumpleaños",
+  empresa: "Cena de empresa",
+  grupo: "Grupo +20",
+  otro: "Otra celebración",
+};
+
+const OWNER_PHONE = "34619028260";
 
 type Status = "idle" | "sending" | "ok";
 
@@ -40,6 +50,59 @@ export default function BookingForm() {
 
   function set<K extends keyof typeof form>(k: K, v: (typeof form)[K]) {
     setForm((f) => ({ ...f, [k]: v }));
+  }
+
+  /** Genera el mensaje formateado para WhatsApp */
+  function buildWhatsAppMessage(): string {
+    const tipo = EVENT_LABELS[form.event_type] || form.event_type;
+    const fecha = form.date
+      ? new Date(form.date + "T00:00:00").toLocaleDateString("es-ES", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      : "Sin fecha";
+
+    let msg = `🍽️ *NUEVA RESERVA — Plankstek El Puerto*\n\n`;
+    msg += `👤 *Nombre:* ${form.client_name}\n`;
+    msg += `📞 *Teléfono:* ${form.phone}\n`;
+    msg += `📧 *Email:* ${form.email}\n`;
+    msg += `🎯 *Tipo:* ${tipo}\n`;
+    msg += `👥 *Asistentes:* ${guests} personas\n`;
+    msg += `📅 *Fecha:* ${fecha}\n`;
+    if (form.notes) {
+      msg += `📝 *Notas:* ${form.notes}\n`;
+    }
+    msg += `\n📍 Puerto Deportivo Fuengirola, 29640 Málaga`;
+    return msg;
+  }
+
+  /** Genera link de Google Calendar para añadir el evento */
+  function buildCalendarLink(): string {
+    const tipo = EVENT_LABELS[form.event_type] || form.event_type;
+    const dateStr = form.date?.replace(/-/g, "") || "";
+    // Evento de 3 horas por defecto
+    const startDate = dateStr ? dateStr + "T190000" : "";
+    const endDate = dateStr ? dateStr + "T220000" : "";
+
+    const title = encodeURIComponent(
+      `${tipo} — ${form.client_name} (${guests} pax)`
+    );
+    const details = encodeURIComponent(
+      `Reserva de ${tipo}\n` +
+        `Cliente: ${form.client_name}\n` +
+        `Tel: ${form.phone}\n` +
+        `Email: ${form.email}\n` +
+        `Asistentes: ${guests}\n` +
+        (form.notes ? `Notas: ${form.notes}\n` : "") +
+        `\n📍 Puerto Deportivo Fuengirola, 29640 Fuengirola, Málaga`
+    );
+    const location = encodeURIComponent(
+      "Puerto Deportivo Fuengirola, 29640 Fuengirola, Málaga"
+    );
+
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
   }
 
   async function submit(e: React.FormEvent) {
@@ -66,6 +129,9 @@ export default function BookingForm() {
   }
 
   if (status === "ok") {
+    const waMsg = buildWhatsAppMessage();
+    const calLink = buildCalendarLink();
+
     return (
       <div className="mx-auto max-w-lg rounded-2xl bg-white p-10 text-center shadow-lg ring-1 ring-black/5">
         <CheckCircle2 className="mx-auto h-14 w-14 text-green-600" />
@@ -73,11 +139,39 @@ export default function BookingForm() {
           ¡Reserva recibida!
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-brand-coal/70">
-          Gracias, {form.client_name}. Hemos registrado tu evento para{" "}
-          <strong>{guests} personas</strong>. Te llamaremos al {form.phone}{" "}
-          para confirmar disponibilidad y propuesta.
+          Gracias, <strong>{form.client_name}</strong>. Hemos registrado tu{" "}
+          <strong>{EVENT_LABELS[form.event_type]}</strong> para{" "}
+          <strong>{guests} personas</strong>.
         </p>
-        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
+
+        {/* WhatsApp + Calendar actions */}
+        <div className="mt-6 flex flex-col gap-3">
+          <a
+            href={`https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(waMsg)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display flex items-center justify-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-green-700 hover:scale-105"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Enviar por WhatsApp al restaurante
+          </a>
+          <a
+            href={calLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-blue-700 hover:scale-105"
+          >
+            <CalendarDays className="h-4 w-4" />
+            Añadir a mi Google Calendar
+          </a>
+        </div>
+
+        <p className="mt-4 text-xs text-brand-coal/50">
+          Te llamaremos al <strong>{form.phone}</strong> para confirmar
+          disponibilidad en menos de 24 h.
+        </p>
+
+        <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-center">
           <Link
             href="/eventos"
             className="font-display rounded-full bg-brand-red px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-red-dark"

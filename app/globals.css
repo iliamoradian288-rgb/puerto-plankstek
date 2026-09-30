@@ -14,6 +14,10 @@
   --color-brand-glow-soft: #f0e2ae; /* dorado pálido: highlights */
   --color-brand-white: #ffffff;
 
+  /* Toque escandinavo — Suecia (sutil, solo acentos) */
+  --color-sweden-blue: #006aa7;   /* azul bandera sueca */
+  --color-sweden-yellow: #fecc00; /* amarillo bandera sueca */
+
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
 }

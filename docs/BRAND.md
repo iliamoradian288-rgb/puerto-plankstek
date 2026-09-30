@@ -27,3 +27,21 @@ Paleta extraída de los 3 PDFs oficiales en `C:\Users\Ilia\Downloads\plankstek\l
 - Header: `brand-ink` o `brand-red-deep` con logo; texto blanco.
 - Tipografía display (titulares estilo cartel): Oswald / Arial Narrow, mayúsculas.
 - Logo: mitad PLANK en `brand-coal`, mitad STEK en `brand-sand`, sobre `brand-red`.
+- Ubicación: Puerto Deportivo Fuengirola, 29640 Fuengirola, Málaga.
+- Horario: Lun–Dom 17:00–01:00.
+- Tel: +34 619 02 82 60.
+- Instagram: instagram.com.
+- Rating: ⭐4,3 (47 reseñas) · 20-30 €.
+
+## Toque escandinavo (Suecia) — acentos sutiles
+
+El dueño pidió sensación de restaurante escandinavo **sin cambiar la base de marca**
+(rojo vino + arena + dorado siguen siendo protagonistas). Solo acentos.
+
+| Token Tailwind   | HEX     | Uso permitido                                      |
+|------------------|---------|----------------------------------------------------|
+| `sweden-blue`    | #006AA7 | Azul bandera sueca — ribetes, puntos, detalles     |
+| `sweden-yellow`  | #FECC00 | Amarillo bandera sueca — ribetes, puntos, detalles |
+
+Regla: azul/amarillo NUNCA como fondo de sección. Solo 1–2 detalles por vista
+(ribete superior, puntos decorativos, franja fina). Si compite con el rojo/dorado, gana el rojo.

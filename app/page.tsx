@@ -16,6 +16,7 @@ import { loadMenuItems } from "@/lib/menu";
 import { loadEvents, nextUpcoming } from "@/lib/events";
 import { loadOffers } from "@/lib/offers";
 import Countdown from "@/components/events/Countdown";
+import SwedishFlag from "@/components/SwedishFlag";
 import MenuCard from "@/components/menu/MenuCard";
 
 export default async function HomePage() {
@@ -41,8 +42,13 @@ export default async function HomePage() {
           />
         </div>
         <div className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:py-28">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <span className="w-1 h-1 rounded-full bg-sweden-blue" />
+            <span className="w-1 h-1 rounded-full bg-sweden-yellow" />
+            <span className="w-1 h-1 rounded-full bg-sweden-blue" />
+          </div>
           <span className="font-display inline-flex items-center gap-2 rounded-full bg-brand-glow/20 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.3em] text-brand-glow ring-1 ring-brand-glow/40 backdrop-blur">
-            <Flame className="h-4 w-4" /> Brasa & Cocina Internacional
+            <Flame className="h-4 w-4" /> Brasa & Cocina Nórdica
           </span>
           <h1 className="font-display mt-6 text-4xl font-bold uppercase tracking-tight text-brand-white sm:text-6xl md:text-7xl">
             El auténtico sabor <br />
@@ -64,9 +70,9 @@ export default async function HomePage() {
             </Link>
             <Link
               href="/reserva-eventos"
-              className="font-display inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-brand-red-dark ring-1 ring-white/20"
+              className="font-display inline-flex items-center justify-center gap-2 rounded-full bg-sweden-blue border-2 border-sweden-yellow px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-sweden-yellow transition-all hover:bg-sweden-blue/90 hover:scale-105 shadow-lg"
             >
-              <Users className="h-4 w-4" />
+              <SwedishFlag className="h-3.5 w-auto" />
               Reserva de Eventos +20
             </Link>
           </div>
@@ -228,10 +234,10 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/reserva-eventos"
-                  className="font-display inline-flex items-center gap-2 rounded-full bg-brand-glow px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-brand-ink transition-colors hover:bg-brand-glow-soft"
+                  className="font-display inline-flex items-center gap-2 rounded-full bg-sweden-blue px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-sweden-yellow ring-2 ring-sweden-yellow shadow-lg transition-all hover:bg-sweden-blue/80 hover:scale-105"
                 >
+                  <Users className="h-4 w-4" />
                   Solicitar reserva
-                  <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/contacto"
@@ -255,7 +261,7 @@ export default async function HomePage() {
                 Ubicación
               </p>
               <p className="text-xs text-brand-white/60">
-                Puerto Deportivo, Benalmádena
+                Puerto Deportivo Fuengirola, 29640
               </p>
             </div>
           </div>
@@ -266,7 +272,7 @@ export default async function HomePage() {
                 Horario
               </p>
               <p className="text-xs text-brand-white/60">
-                Lun–Dom · 13:00 – 23:30
+                Lun–Dom · 17:00 – 01:00
               </p>
             </div>
           </div>
